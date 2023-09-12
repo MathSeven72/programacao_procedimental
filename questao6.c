@@ -12,14 +12,7 @@ int main(void) {
         system("chcp 65001"); // troca para UTF-8
     #endif
 
-    int a, result = 0;
-    
-    scanf("%d", &a);
-    
-    for (int i = 1; i <= a ; i++) {
-        result += i;
-    }
-    printf("a somatoria dos numeros de 1 até %d é = %d", a, result);
+    /* -- seu código aqui -- */
 
     return EXIT_SUCCESS;
 }

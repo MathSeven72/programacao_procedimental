@@ -12,17 +12,7 @@ int main(void) {
         system("chcp 65001"); // troca para UTF-8
     #endif
 
-    int i, n;
-    
-    scanf("%d", &n);
-    i=1;
-    do{
-        printf("%d\n",i);
-        i = i+1;
-    } while(i <= n);
-    /* se o usuario digitar 0 a saida será 1
-    justamente porque o programa é um contador que
-    inicia em 1 e vai ate n que no caso foi o numero
-    que o usuario colocou*/
+    /* -- seu código aqui -- */
+
     return EXIT_SUCCESS;
 }
