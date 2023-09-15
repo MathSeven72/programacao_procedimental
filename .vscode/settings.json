@@ -1,6 +1,12 @@
 {
+<<<<<<< HEAD
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8"
+=======
+    "C_Cpp.errorSquiggles": "disabled",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+>>>>>>> f69c5bc17d470561ff8dc1bc33a9cf65be427e70
     },
     "python.formatting.provider": "none"
 }

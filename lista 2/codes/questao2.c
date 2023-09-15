@@ -12,7 +12,25 @@ int main(void) {
         system("chcp 65001"); // troca para UTF-8
     #endif
 
+<<<<<<< HEAD
     /* -- seu código aqui -- */
+=======
+    int a;
+    
+    scanf("%d", &a);
+    /*oque acontece aqui é que a conta solicitada 
+    esta sendo feita mas não existe um comparativo
+    para verificar se esta correto, o correto seria:
+    
+    if(a % 2 == 0){
+        printf("O valor é par.\n");
+        }
+    
+    Do jeito que se encontra o programa ele sempre
+    irá trazer o print especificado abaixo 
+    idepentente de ser par ou não*/
+    if (a % 2) printf ("O valor é par.\n"); 
+>>>>>>> f69c5bc17d470561ff8dc1bc33a9cf65be427e70
 
     return EXIT_SUCCESS;
 }

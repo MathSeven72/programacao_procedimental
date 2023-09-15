@@ -1,73 +1,83 @@
-def distribuir_vacinas(meses, vacinas_por_mes):
+# 12311EEL015
 
-    primeira_dose = 0
-    segunda_dose = 0
-    segunda_dose_em_atraso = 0
-    pessoas_esperando_segunda_dose = 0
+def vaccine_distribution(months, vaccines):
+    first_dose = 0
+    second_dose = 0
+    first_dose_delayed = 0
+    second_dose_delayed = 0
+    first_dose_month = 0
 
-    for i in range(meses):
-        disponivel = vacinas_por_mes[i]
+    for i in range(months):
+        vaccines_available = vaccines[i]
+        # Distribute second doses to those with a delay
+        if first_dose_month > 1:
+            print("segunda dose atrazada")
+            # vaccinated = min(first_dose_delayed, vaccines_available)
+            if (first_dose_delayed + first_dose) > vaccines_available:
+                first_dose_month += 1
+                first_dose_delayed = abs(first_dose -
+                                          vaccines_available)
+                second_dose_delayed = vaccines_available
+            else:
+                second_dose_delayed += first_dose_delayed
+                vaccines_available = abs(vaccines_available -
+                                         first_dose_delayed)
+                first_dose_delayed = 0
 
-        # Verifica se existem pessoas esperando a segunda dose
-        if pessoas_esperando_segunda_dose > 0 and i == 0:
-            doses_aplicadas = min(disponivel, pessoas_esperando_segunda_dose)
-            segunda_dose += doses_aplicadas
-            pessoas_esperando_segunda_dose -= doses_aplicadas
-            disponivel -= doses_aplicadas
+                if first_dose > 0:
+                    second_dose += (vaccines_available + first_dose)
+                    first_dose = 0
+                    first_dose_month = 0
 
-        # Verifica se existem pessoas com segunda dose em atraso
-        elif segunda_dose_em_atraso > 0 or i == 1:
-            doses_aplicadas = min(disponivel, segunda_dose_em_atraso)
-            segunda_dose += doses_aplicadas
-            segunda_dose_em_atraso -= doses_aplicadas
-            disponivel -= doses_aplicadas
+                elif first_dose == 0:
+                    first_dose += vaccines_available
+                    first_dose_month += 1
 
-        # Verifica se existem pessoas elegíveis para a segunda dose
-        elif primeira_dose > 0:
-            doses_aplicadas = min(disponivel, primeira_dose)
-            segunda_dose += doses_aplicadas
-            primeira_dose -= doses_aplicadas
-            disponivel -= doses_aplicadas
+                first_dose_month = 0
 
-        # As vacinas restantes são aplicadas como primeira dose
-        primeira_dose += disponivel
+        # Distribute second doses to those in time
+        elif first_dose_month == 1:
+            # vaccinated = min(first_dose, vaccines_available)
+            if first_dose > vaccines_available:
+                first_dose_month += 1
+                first_dose_delayed = abs(first_dose -
+                                         vaccines_available)
+                second_dose = vaccines_available
 
-        # Verifica se existem pessoas com segunda dose em atraso
-        if i >= 1:
-            segunda_dose_em_atraso += primeira_dose
+            else:
+                second_dose += (vaccines_available + first_dose)
+                first_dose = 0
+                first_dose_month = 0
 
-    # Pessoas completamente imunizadas
-    completamente_imunizadas = segunda_dose
+        # Distribute first doses
+        elif first_dose_month == 0:
+            first_dose += vaccines_available
+            first_dose_month += 1
 
-    # Pessoas imunizadas apenas com uma dose
-    imunizadas_apenas_com_primeira_dose = primeira_dose
 
-    # Pessoas que tomaram a segunda dose com atraso
-    tomaram_segunda_dose_com_atraso = segunda_dose_em_atraso
 
-    # Pessoas esperando a segunda dose com atraso
-    esperando_segunda_dose_com_atraso = primeira_dose
+    print("Pessoas completamente imunizadas:",
+          second_dose + second_dose_delayed)
+    print("Pessoas imunizadas apenas com uma dose:",
+          first_dose)
+    print("Pessoas que tomaram a segunda dose com atraso:",
+          second_dose_delayed)
+    print("Pessoas esperando a segunda dose com atraso:",
+          first_dose_delayed)
 
-    return (
-        completamente_imunizadas,
-        imunizadas_apenas_com_primeira_dose,
-        tomaram_segunda_dose_com_atraso,
-        esperando_segunda_dose_com_atraso,
-    )
 
-# Leitura de entrada
-meses = int(input())
-vacinas_por_mes = [int(input()) for _ in range(meses)]
+def main():
 
-(
-    completamente_imunizadas,
-    imunizadas_apenas_com_primeira_dose,
-    tomaram_segunda_dose_com_atraso,
-    esperando_segunda_dose_com_atraso,
-) = distribuir_vacinas(meses, vacinas_por_mes)
+    # Input
+    N = int(input())
+    vaccines = []
+    for _ in range(N):
+        vaccines.append(int(input()))
 
-# Saída
-print(f'Pessoas completamente imunizadas: {completamente_imunizadas}')
-print(f'Pessoas imunizadas apenas com uma dose: {imunizadas_apenas_com_primeira_dose}')
-print(f'Pessoas que tomaram a segunda dose com atraso: {tomaram_segunda_dose_com_atraso}')
-print(f'Pessoas esperando a segunda dose com atraso: {esperando_segunda_dose_com_atraso}')
+    # Calculate and print vaccine distribution
+    vaccine_distribution(N, vaccines)
+
+
+if __name__ == "__main__":
+    main()
+

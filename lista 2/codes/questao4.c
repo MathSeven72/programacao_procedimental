@@ -12,7 +12,25 @@ int main(void) {
         system("chcp 65001"); // troca para UTF-8
     #endif
 
+<<<<<<< HEAD
     /* -- seu código aqui -- */
 
+=======
+/*Neste code encontramos um problema meio parecido 
+com o anterior a falta do int(main) e os '{}'
+mas não considerando esses erros o comando 4 só é execudado se a condição 1 e condição 3 não forem satisfeitas*/
+    if (cond1){
+        if (cond2)
+            comando1;
+        else
+            comando2;
+    }
+    else{
+        if(cond3)
+            comando3;
+        else
+            comando4;
+    }
+>>>>>>> f69c5bc17d470561ff8dc1bc33a9cf65be427e70
     return EXIT_SUCCESS;
 }
