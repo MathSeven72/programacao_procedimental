@@ -16,5 +16,5 @@ def main():
     answer(values, days_maximum_sale, value_for_buy)
 
   
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()

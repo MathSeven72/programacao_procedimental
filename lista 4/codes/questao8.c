@@ -1,7 +1,7 @@
 /*
  * Arquivo: questao8.c
  * Compilação: gcc -std=c99 questao8.c -o questao8
- * Autor: AUTHOR
+ * Autor: Matheus Souza da Costa 12021EEL021
  */
 
 #include <stdio.h>
