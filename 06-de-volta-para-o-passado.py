@@ -1,6 +1,6 @@
 # 12311EEL015
 
-def 
+def anwer
 def main():
 
     # Input
